@@ -1,0 +1,25 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madu-alt/Habit-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Madu-alt/Habit-Tracker/issues"
+  },
+  "homepage": "https://github.com/Madu-alt/Habit-Tracker#readme",
+  "devDependencies": {
+    "electron": "^40.4.1",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}
