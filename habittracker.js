@@ -11,6 +11,7 @@ var currentDay = date.getDay();
 var currentMonth = date.getMonth();
 var currentYear = date.getFullYear();
 var currentDate = date.getDate();
+const todayDay = new Date().getDate();
 var months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 var chaveStorage = "habitos-" + currentYear + "-" + currentMonth;
 var dataSaved = JSON.parse(localStorage.getItem(chaveStorage)) || [];
@@ -29,7 +30,6 @@ title.innerHTML = '🌷 ' + months[currentMonth] + ' 🌷' ;
 
 
 // Update the calendar info 
-
 
 if (savedHabit && habitTitle) { 
         habitTitle.innerHTML = savedHabit;
@@ -64,20 +64,31 @@ var dayCount = 0;
 /* Set up the calendar day */
 for (var i = 0; i < days.length; i++) {
     if (dayCount < daysInThisMonth) {
-        days[i].innerHTML = dayCount + 1;
+        var numberOfTheDay = dayCount + 1;
+        days[i].innerHTML = numberOfTheDay;
         days[i].setAttribute("id", "day" + (dayCount + 1));
         
         if (dataSaved.includes(days[i].innerHTML)) { 
             days[i].classList.add("checked");
         }
-        
+        if (numberOfTheDay === todayDay) { 
+            days[i].style.border = "3px solid #ff4d4d";
+            days[i].classList.remove("dia-bloqueado");
+        }
+        else {
+            days[i].classList.add("dia-bloqueado");
+        }
         if (dayCount === currentDate - 1) {
             days[i].style.border = "3px solid black";
             days[i].style.fontWeight = "bold";
         }
 
         days[i].onclick = function() {
-            this.classList.toggle("checked");
+            if (this.classList.contains("dia-bloqueado")) {
+                return;
+            }
+
+           this.classList.toggle("checked");
             
             // Atualiza o contador toda vez que clica
             let daysCompleted = document.querySelectorAll(".day.checked").length;
@@ -92,6 +103,7 @@ for (var i = 0; i < days.length; i++) {
         days[i].style.border = "none";
     }
 }
+
 
 // Reset Button
 var resetButton = document.getElementById("resetButton");
