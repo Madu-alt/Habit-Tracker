@@ -43,7 +43,7 @@ body {
     border-radius: 10px 10px 0px 0px;
     border: 2px solid black;
     padding: 15px 20px;
-    font-size: 20px;
+    font-size: 30px;
     background-color: pink;
 }
 
@@ -112,4 +112,8 @@ body {
     filter: brightness(0.9);
     pointer-events: none !important;
     cursor: default;
+}
+
+#habitTitle {
+    font-size: 20px;
 }
