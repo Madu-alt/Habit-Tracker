@@ -93,6 +93,7 @@ for (var i = 0; i < days.length; i++) {
             // Atualiza o contador toda vez que clica
             let daysCompleted = document.querySelectorAll(".day.checked").length;
             document.getElementById("totalDays").innerHTML = "Total de dias: " + daysCompleted + "/" + daysInThisMonth;
+            calculateStreak();
         };
 
 
@@ -152,3 +153,21 @@ saveButton.onclick = function() {
 
 totalDays = document.querySelectorAll(".day.checked").length;
 document.getElementById("totalDays").innerHTML = "Total de dias: " + totalDays + "/" + daysInThisMonth; }
+
+//Streaks
+var streakRecordDays = document.getElementById("streakRecord");
+
+function calculateStreak() {
+   var streakTitle = document.getElementById("streakTitle");
+   totalDays = document.querySelectorAll(".day.checked").length;
+   var streakCount = document.querySelectorAll("totalDays").length;
+   streakTitle.innerHTML = "Sua sequência atual é: " + streakCount + " dias"; 
+}
+
+if (streakCount === 0) {
+ streakTitle.innerHTML = "Comece sua jornada hoje! ✨";
+} else {
+    streakTitle.innerHTML = "Sua sequência atual é: " + streakCount + " dias";
+}
+
+calculateStreak();
