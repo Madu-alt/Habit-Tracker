@@ -159,15 +159,24 @@ var streakRecordDays = document.getElementById("streakRecord");
 
 function calculateStreak() {
    var streakTitle = document.getElementById("streakTitle");
-   totalDays = document.querySelectorAll(".day.checked").length;
-   var streakCount = document.querySelectorAll("totalDays").length;
-   streakTitle.innerHTML = "Sua sequência atual é: " + streakCount + " dias"; 
-}
-
-if (streakCount === 0) {
- streakTitle.innerHTML = "Comece sua jornada hoje! ✨";
+   checkedDays = document.querySelectorAll(".day.checked");
+   markedDays = Array.from(checkedDays).map(d => parseInt(d.innerHTML));
+   markedDays.sort((a, b) => b - a);
+   var streakCount = 0;
+   dayToCheck = currentDate;
+   for (var i = 0; i < markedDays.length; i++) {
+    if (markedDays.includes(dayToCheck)) {
+        streakCount++;
+        dayToCheck--;
 } else {
-    streakTitle.innerHTML = "Sua sequência atual é: " + streakCount + " dias";
+        break;
+    }
+    if (streakCount===0) {
+        streakTitle.innerHTML = "Comece sua jornada hoje! ✨";
+    } else { 
+        streakTitle.innerHTML = "Sua sequência atual é de: " + streakCount + " dias! 🔥";
+    }   
+    }
 }
-
+    
 calculateStreak();
